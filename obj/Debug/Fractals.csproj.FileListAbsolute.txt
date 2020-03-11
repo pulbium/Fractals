@@ -1,0 +1,16 @@
+G:\source\repos\Fractals\Fractals\bin\Debug\Fractals.exe.config
+G:\source\repos\Fractals\Fractals\bin\Debug\Fractals.exe
+G:\source\repos\Fractals\Fractals\bin\Debug\Fractals.pdb
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.csprojAssemblyReference.cache
+G:\source\repos\Fractals\Fractals\obj\Debug\MainWindow.g.cs
+G:\source\repos\Fractals\Fractals\obj\Debug\App.g.cs
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals_MarkupCompile.cache
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals_MarkupCompile.lref
+G:\source\repos\Fractals\Fractals\obj\Debug\MainWindow.baml
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.g.resources
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.Properties.Resources.resources
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.csproj.GenerateResource.cache
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.exe
+G:\source\repos\Fractals\Fractals\obj\Debug\Fractals.pdb
+G:\source\repos\Fractals\Fractals\obj\Debug\pgBarWindow.g.cs
+G:\source\repos\Fractals\Fractals\obj\Debug\pgBarWindow.baml
