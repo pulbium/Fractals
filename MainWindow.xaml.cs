@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Fractals {
 	/// <summary>
@@ -15,7 +16,7 @@ namespace Fractals {
 			pixels = new byte[bitmap.PixelWidth, bitmap.PixelHeight, 4];
 			height = bitmap.PixelHeight;
 			width = bitmap.PixelWidth; //wymiary bitmapy
-
+			pgBar.Maximum = height;
 			/*if (calcWorker == null) {
 				calcWorker = new BackgroundWorker();
 				calcWorker.DoWork += new DoWorkEventHandler(calcWorker_DoWork);
@@ -30,7 +31,6 @@ namespace Fractals {
 		WriteableBitmap bitmap;
 		int width, height;
 		byte[,,] pixels;
-		Window1 pgWindow;
 		//BackgroundWorker calcWorker = null;
 
 		byte checkConvergence(float[] c, int acc) {
@@ -49,11 +49,8 @@ namespace Fractals {
 			return 0xFF;
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e) {
-			pgWindow = new Window1();
-			pgWindow.pgBar.Value = 0;
-			pgWindow.Show();
-
+		private void CalcButton_Click(object sender, RoutedEventArgs e) {
+			pgBar.Value = 0;
 			int count = 0;
 			for (int row = 0; row < height; row++) {
 				for (int col = 0; col < width; col++) {
@@ -65,15 +62,12 @@ namespace Fractals {
 
 					pixels[row, col, 3] = (byte)checkConvergence(z, 100);           //nadaje kolor (alpha) w zaleznosci od 
 																					//ilosci iteracji (chyba)
-
-					count++;
-					pgWindow.pgBar.Value = (int)(100 * count / (float)(width * height));
-					//calcWorker.ReportProgress((int)(100 * count / (float)(width * height)));
 				}
+				count++;
+				pgBar.Dispatcher.Invoke(() => pgBar.Value = count, DispatcherPriority.Background);
 			}
 
 
-			pgWindow.Close();
 			byte[] pixels1d = new byte[width * height * 4];
 			int index = 0;
 			for (int row = 0; row < height; row++) {
@@ -98,7 +92,7 @@ namespace Fractals {
 			//if (!calcWorker.IsBusy) {
 			//		calcWorker.RunWorkerAsync();
 			//}
-
+			
 		}
 
 		/*private void calcWorker_DoWork(object sender, DoWorkEventArgs e) {
