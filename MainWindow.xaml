@@ -5,16 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fractals"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
+        Title="Fractal Generator" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="718" Margin="10,10,0,0" VerticalAlignment="Top" Width="790"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="718" Margin="800,10,0,0" VerticalAlignment="Top" Width="208">
             <Grid>
                 <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Insert equation" VerticalAlignment="Top" Width="120" Margin="44,10,0,0"/>
                 <Button Content="Calculate" HorizontalAlignment="Left" Margin="66,56,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-
             </Grid>
         </Border>
-
     </Grid>
 </Window>

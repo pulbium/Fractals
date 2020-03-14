@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fractals"
         mc:Ignorable="d"
-        Title="Window1" Height="128" Width="512">
+        Height="128" Width="512">
     <Grid>
         <ProgressBar x:Name="pgBar" Height="20" Margin="89,44,88,0" VerticalAlignment="Top"/>
         <Label Content="Calculating..." Margin="214,13,214,0" VerticalAlignment="Top"/>
