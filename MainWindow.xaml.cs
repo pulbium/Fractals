@@ -16,14 +16,14 @@ namespace Fractals {
 			height = bitmap.PixelHeight;
 			width = bitmap.PixelWidth; //wymiary bitmapy
 
-			if (calcWorker == null) {
+			/*if (calcWorker == null) {
 				calcWorker = new BackgroundWorker();
 				calcWorker.DoWork += new DoWorkEventHandler(calcWorker_DoWork);
 				calcWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(calcWorker_RunWorkerCompleted);
 				calcWorker.ProgressChanged += new ProgressChangedEventHandler(calcWorker_ProgressChanged);
 				calcWorker.WorkerReportsProgress = true;
 				calcWorker.WorkerSupportsCancellation = true;
-			}
+			}*/
 		}
 
 
@@ -31,7 +31,7 @@ namespace Fractals {
 		int width, height;
 		byte[,,] pixels;
 		Window1 pgWindow;
-		BackgroundWorker calcWorker = null;
+		//BackgroundWorker calcWorker = null;
 
 		byte checkConvergence(float[] c, int acc) {
 			float[] z = { 0, 0 };       //z0
@@ -54,13 +54,54 @@ namespace Fractals {
 			pgWindow.pgBar.Value = 0;
 			pgWindow.Show();
 
-			if (!calcWorker.IsBusy) {
-				calcWorker.RunWorkerAsync();
+			int count = 0;
+			for (int row = 0; row < height; row++) {
+				for (int col = 0; col < width; col++) {
+					for (int i = 0; i < 3; i++) pixels[row, col, i] = 0;    //R, G i B na 0
+
+					float[] z = new float[2];
+					z[0] = (float)(col - 3 * width / 4) / 900f;
+					z[1] = (float)(row - height / 2) / 900f;
+
+					pixels[row, col, 3] = (byte)checkConvergence(z, 100);           //nadaje kolor (alpha) w zaleznosci od 
+																					//ilosci iteracji (chyba)
+
+					count++;
+					pgWindow.pgBar.Value = (int)(100 * count / (float)(width * height));
+					//calcWorker.ReportProgress((int)(100 * count / (float)(width * height)));
+				}
 			}
+
+
+			pgWindow.Close();
+			byte[] pixels1d = new byte[width * height * 4];
+			int index = 0;
+			for (int row = 0; row < height; row++) {
+				for (int col = 0; col < width; col++) {
+					for (int i = 0; i < 4; i++)
+						pixels1d[index++] = pixels[row, col, i];
+				}
+			}
+
+			Int32Rect rect = new Int32Rect(0, 0, width, height);
+			int stride = 4 * width;
+			bitmap.WritePixels(rect, pixels1d, stride, 0);
+
+			Image image = new Image() {
+				Source = bitmap,
+				Stretch = Stretch.None,
+				Margin = new Thickness(0),
+				Width = 790,
+				Height = 718
+			};
+			canvas.Children.Add(image);
+			//if (!calcWorker.IsBusy) {
+			//		calcWorker.RunWorkerAsync();
+			//}
 
 		}
 
-		private void calcWorker_DoWork(object sender, DoWorkEventArgs e) {
+		/*private void calcWorker_DoWork(object sender, DoWorkEventArgs e) {
 			int count = 0;
 			for (int row = 0; row < height; row++) {
 				for (int col = 0; col < width; col++) {
@@ -108,5 +149,6 @@ namespace Fractals {
 			};
 			canvas.Children.Add(image);
 		}
+	*/
 	}
 }
