@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fractals"
         mc:Ignorable="d"
-        Title="Fractal Generator" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+        Title="Fractal Generator" Height="768" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="718" Margin="10,10,0,0" VerticalAlignment="Top" Width="790"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="700" Margin="50,10,0,0" VerticalAlignment="Center" Width="700"/>
         <Border BorderBrush="Black" BorderThickness="1" Height="718" Margin="0,0,10,0" VerticalAlignment="Center" Width="208" HorizontalAlignment="Right">
-            <Grid>
-                <TextBox HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="Insert equation" VerticalAlignment="Top" Width="120" Margin="0,10,0,0"/>
-                <Button x:Name="calcButton" Content="Calculate" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="75" Click="CalcButton_Click"/>
+            <Grid Width="200" Height="700">
+                <TextBox HorizontalAlignment="Center" Height="25" TextWrapping="Wrap" Text="Insert equation" VerticalAlignment="Top" Width="120" Margin="0,10,0,0"/>
+                <Button x:Name="calcButton" Content="Calculate" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Width="75" Click="CalcButton_Click" Height="20"/>
                 <ProgressBar x:Name="pgBar" HorizontalAlignment="Center" Height="10" Margin="0,106,0,0" VerticalAlignment="Top" Width="150"/>
-                <Button x:Name="zoomBtnPLus" Content="+" HorizontalAlignment="Left" Margin="75,156,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
-                <Button x:Name="zoomBtnMinus" Content="-" HorizontalAlignment="Left" Margin="105,156,0,0" VerticalAlignment="Top" Width="25" Height="25"/>
+                <Button x:Name="zoomBtnPLus" Content="+" Margin="70,150,105,0" VerticalAlignment="Top" Height="25" Width="25"/>
+                <Button x:Name="zoomBtnMinus" Content="-" Margin="105,150,70,0" VerticalAlignment="Top" Height="25" Width="25"/>
             </Grid>
         </Border>
     </Grid>

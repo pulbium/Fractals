@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿//using org.mariuszgromada.math.mxparser;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,7 +12,7 @@ namespace Fractals {
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();
-			bitmap = new WriteableBitmap(2000, 2000, 500d, 500d, PixelFormats.Bgra32, null);
+			bitmap = new WriteableBitmap(3000, 3000, 500d, 500d, PixelFormats.Bgra32, null);
 			pixels = new byte[bitmap.PixelWidth, bitmap.PixelHeight, 4];
 			height = bitmap.PixelHeight;
 			width = bitmap.PixelWidth; //wymiary bitmapy
@@ -35,18 +35,20 @@ namespace Fractals {
 
 		byte checkConvergence(float[] c, int acc) {
 			float[] z = { 0, 0 };       //z0
+			int count = 0;
 			for (int i = 0; i < acc; i++) {
 				if (z[0] * z[0] + z[1] * z[1] > 4) {
-					return 0;
+					return (byte)(255 * i / acc);
 				}
-				float[] tmp = new float[2];
-				tmp[0] = z[0];
-				tmp[1] = z[1];
+				float[] oldZ = new float[2];
+				oldZ[0] = z[0];
+				oldZ[1] = z[1];
 				//bo Zuze
-				z[0] = tmp[0] * tmp[0] - tmp[1] * tmp[1] + c[0];
-				z[1] = 2 * tmp[0] * tmp[1] + c[1];      //zN+1 = zN^2 + c
+				z[0] = oldZ[0] * oldZ[0] - oldZ[1] * oldZ[1] + c[0];
+				z[1] = 2 * oldZ[0] * oldZ[1] + c[1];      //zN+1 = zN^2 + c
+				count++;
 			}
-			return 0xFF;
+			return 255;
 		}
 
 		private void CalcButton_Click(object sender, RoutedEventArgs e) {
@@ -60,7 +62,7 @@ namespace Fractals {
 					z[0] = (float)(col - 3 * width / 4) / 900f;
 					z[1] = (float)(row - height / 2) / 900f;
 
-					pixels[row, col, 3] = (byte)checkConvergence(z, 100);           //nadaje kolor (alpha) w zaleznosci od 
+					pixels[row, col, 3] = (byte)checkConvergence(z, 255);           //nadaje kolor (alpha) w zaleznosci od 
 																					//ilosci iteracji (chyba)
 				}
 				count++;
@@ -83,10 +85,10 @@ namespace Fractals {
 
 			Image image = new Image() {
 				Source = bitmap,
-				Stretch = Stretch.None,
+				Stretch = Stretch.Fill,
 				Margin = new Thickness(0),
-				Width = 790,
-				Height = 718
+				Width = 700,
+				Height = 700
 			};
 			canvas.Children.Add(image);
 			//if (!calcWorker.IsBusy) {
