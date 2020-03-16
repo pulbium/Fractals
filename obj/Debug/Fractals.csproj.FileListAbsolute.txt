@@ -28,3 +28,5 @@ G:\source\repos\Fractals\obj\Debug\MainWindow.baml
 G:\source\repos\Fractals\obj\Debug\Fractals.g.resources
 G:\source\repos\Fractals\obj\Debug\Fractals.Properties.Resources.resources
 G:\source\repos\Fractals\obj\Debug\Fractals.csproj.GenerateResource.cache
+G:\source\repos\Fractals\bin\Debug\MathParser.org-mXparser.dll
+G:\source\repos\Fractals\obj\Debug\Fractals.csproj.CopyComplete
