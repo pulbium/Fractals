@@ -7,28 +7,34 @@
         mc:Ignorable="d"
         Title="Fractal Generator" Height="768" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="700" Margin="50,10,0,0" VerticalAlignment="Center" Width="700"/>
-        <Border BorderBrush="Black" BorderThickness="1" Height="718" Margin="0,0,10,0" VerticalAlignment="Center" Width="208" HorizontalAlignment="Right">
+        <Canvas x:Name="canvas" Background="White" HorizontalAlignment="Left" Height="700" Margin="50,10,0,0" VerticalAlignment="Center" Width="700" PreviewMouseLeftButtonDown="canvas_PreviewMouseLeftButtonDown">
+            <Canvas.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="saveImageAs" Header="Save image as..." PreviewMouseDown="saveImageAs_PreviewMouseDown" />
+                </ContextMenu>
+            </Canvas.ContextMenu>
+        </Canvas>
+                <Border BorderBrush="Black" BorderThickness="1" Height="718" Margin="0,0,10,0" VerticalAlignment="Center" Width="208" HorizontalAlignment="Right">
             <Grid Width="200" Height="700">
-                <Button x:Name="calcButton" Content="Calculate" HorizontalAlignment="Center" Margin="62,392,63,0" VerticalAlignment="Top" Width="75" Click="CalcButton_Click" Height="20"/>
+                <Button x:Name="calcButton" Content="Calculate" HorizontalAlignment="Center" Margin="0,392,0,0" VerticalAlignment="Top" Width="75" Click="CalcButton_Click" Height="20"/>
                 <ProgressBar x:Name="pgBar" HorizontalAlignment="Center" Height="10" Margin="25,431,25,0" VerticalAlignment="Top" Width="150"/>
-                <Button x:Name="zoomBtnPLus" Content="+" Margin="70,223,105,0" VerticalAlignment="Top" Height="25" Width="25" Click="zoomBtnPLus_Click"/>
-                <Button x:Name="zoomBtnMinus" Content="-" Margin="105,223,70,0" VerticalAlignment="Top" Height="25" Width="25" Click="zoomBtnMinus_Click"/>
+                <Button x:Name="zoomBtnPLus" Content="x10" Margin="70,223,105,0" VerticalAlignment="Top" Height="25" Width="25" Click="zoomBtnPLus_Click"/>
+                <Button x:Name="zoomBtnMinus" Content="x0.1" Margin="105,223,70,0" VerticalAlignment="Top" Height="25" Width="25" Click="zoomBtnMinus_Click"/>
                 <Button x:Name="upBtn" Content="↑" HorizontalAlignment="Center" Margin="88,122,88,0" VerticalAlignment="Top" Width="24" Height="25" Click="upBtn_Click"/>
                 <Button x:Name="leftBtn" Content="←" HorizontalAlignment="Center" Margin="63,147,112,0" VerticalAlignment="Top" Width="25" Height="25" RenderTransformOrigin="-0.868,2.092" Click="leftBtn_Click"/>
                 <Button x:Name="rightBtn" Content="→" HorizontalAlignment="Center" Margin="113,147,62,0" VerticalAlignment="Top" Width="25" Height="25" RenderTransformOrigin="-0.868,2.092" Click="rightBtn_Click"/>
                 <Button x:Name="downBtn" Content="↓" HorizontalAlignment="Center" Margin="88,172,87,0" VerticalAlignment="Top" Width="25" Height="25" Click="downBtn_Click"/>
                 <Label Content="Image centered at:" HorizontalAlignment="Center" Margin="46,3,46,0" VerticalAlignment="Top" Width="108" Height="29"/>
-                <TextBox x:Name="offXTxtBox" HorizontalAlignment="Left" Height="25" Margin="60,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" TextChanged="offXTxtBox_TextChanged"/>
-                <TextBox x:Name="offYTxtBox" HorizontalAlignment="Left" Height="25" Margin="60,78,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" TextChanged="offYTxtBox_TextChanged"/>
+                <TextBox x:Name="offXTxtBox" HorizontalAlignment="Left" Height="25" Margin="60,42,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" PreviewTextInput="offXTxtBox_PreviewTextInput"/>
+                <TextBox x:Name="offYTxtBox" HorizontalAlignment="Left" Height="25" Margin="60,78,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" PreviewTextInput="offYTxtBox_PreviewTextInput"/>
                 <Label Content="Re" HorizontalAlignment="Left" Margin="30,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.085,-0.559" Height="25" Width="25"/>
                 <Label Content="Im" HorizontalAlignment="Left" Margin="30,78,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.085,-0.559" Height="25" Width="25"/>
                 <Label Content="Zoom:" HorizontalAlignment="Left" Margin="25,261,0,0" VerticalAlignment="Top" Height="25"/>
-                <TextBox x:Name="zoomTxtBox" HorizontalAlignment="Left" Height="25" Margin="75,261,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" TextChanged="zoomTxtBox_TextChanged"/>
+                <TextBox x:Name="zoomTxtBox" HorizontalAlignment="Left" Height="25" Margin="75,261,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="90" PreviewTextInput="zoomTxtBox_PreviewTextInput" PreviewMouseWheel="zoomTxtBox_PreviewMouseWheel"/>
                 <Label Content="x" HorizontalAlignment="Left" Margin="167,261,0,0" VerticalAlignment="Top" Height="25"/>
-                <Button x:Name="clrBtn" Content="Clear" HorizontalAlignment="Center" Margin="62,364,62,0" VerticalAlignment="Top" Width="76" Click="clrBtn_Click"/>
+                <Button x:Name="clrBtn" Content="Clear" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Width="75" Click="clrBtn_Click" Height="20"/>
                 <Label Content="Max. no. of iterations:" HorizontalAlignment="Left" Margin="13,324,0,0" VerticalAlignment="Top" Height="25"/>
-                <TextBox x:Name="iterationsTxtBox" HorizontalAlignment="Left" Height="25" Margin="142,324,0,0" TextWrapping="Wrap" Text="255" VerticalAlignment="Top" Width="48" TextChanged="iterationsTxtBox_TextChanged"/>
+                <TextBox x:Name="iterationsTxtBox" HorizontalAlignment="Left" Height="25" Margin="142,324,0,0" TextWrapping="Wrap" Text="255" VerticalAlignment="Top" Width="48" PreviewTextInput="iterationsTxtBox_PreviewTextInput"/>
             </Grid>
         </Border>
     </Grid>
